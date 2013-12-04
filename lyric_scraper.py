@@ -8,7 +8,9 @@ import string
 
 DEBUG = True
 
-def getXmlData(queryStr):
+def getXmlData(queryStr,curAttempt = 0,maxAttempts = 4):
+    if (curAttempt > maxAttempts):
+        return "FailedToGetLyricsError"
     time.sleep(10)
     print "trying to get lyrics..."
     try:
@@ -19,7 +21,7 @@ def getXmlData(queryStr):
         return xmlString
     except urllib2.URLError:
         print "failure! trying again..."
-        return getXmlData(queryStr)
+        return getXmlData(queryStr,curAttempt+1,maxAttempts)
 
 def getLyricText(lid,checksum):
     queryStr = "http://" + urllib.quote("api.chartlyrics.com/apiv1.asmx/GetLyric?lyricId=" + lid + "&lyricCheckSum="+checksum,'?/&=')
@@ -95,7 +97,10 @@ for sn in songArtistNames:
             folder = chunks[0]
             
             f = open(outFolder + '/' + folder + "/" + str(LyricChecksum) + "." + str(LyricId),'w')
-            f.write(ltext)
+            try:
+                f.write(ltext)
+            except UnicodeEncodeError:
+                f.write("FailedToWriteLyricsError")
             f.close()
             found = True
             break
