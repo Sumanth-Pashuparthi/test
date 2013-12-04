@@ -53,6 +53,17 @@
 <p>We are also using the ChartLyrics API in order to fetch lyrics for each of the songs. These lyrics are used alongside audio features as input to our learner.</p>
 
 <h3>
+<a name="audio-features" class="anchor" href="#audio-features"><span class="octicon octicon-link"></span></a>Audio Features</h3>
+
+<p>In our initial analysis of data, we have begun work with two main audio feature classifiers. We have a matlab script that compiles tempo information on all of our songs, for use classification in WEKA. Tempo is one of our initial features because of its dramatic variation between different styles of music, a distinction that may prove useful in distinguishing between faster (metal) and slower (reggae) genres. Our additional audio feature is Mel-Frequency Cepstral Coefficient (MFCC) analysis. MFCCs are designed to capture short-term spectral-based features and, though initially developed for vocal recognition, have proven highly effective in musical classification. 
+Research by Tzanetakis suggests that pitch is also a power classification tool for genre classification. Unfortunately, we've had a number of issues attempting to extract pitch. Despite attempts with python binding enabled Marsyas, and older versions of Marsyas, we have yet to extract meaningful input. This is something we hope to achieve in the week. Alternatively, we will research other meaningful audio features and find another to extract.</p>
+
+<h3>
+<a name="lyrical-analysis--classification" class="anchor" href="#lyrical-analysis--classification"><span class="octicon octicon-link"></span></a>Lyrical Analysis &amp; Classification</h3>
+
+<p>Brief summary of data acquisition, sanitation, setbacks, and classification. </p>
+
+<h3>
 <a name="initial-results" class="anchor" href="#initial-results"><span class="octicon octicon-link"></span></a>Initial Results</h3>
 
 <p>We've had success in using Marsyas to extract features from the audio files in our dataset, of which there are 100 in each of 8 genres. We first created a collection file for each genre:</p>
@@ -103,7 +114,11 @@ $ ./mkcollection -c rock.mf -l rock ~/Desktop/genres/rock/
 
 <p>Cuthbert, et al. "Feature Extraction and Machine Learning on Symbolic Music Using the music21 Toolkit". 12th International Society for Music Information Retrieval Conference, 2011. <a href="http://ismir2011.ismir.net/papers/PS3-6.pdf">http://ismir2011.ismir.net/papers/PS3-6.pdf</a>.</p>
 
+<p>Li, et al. "A Comparative Study on Content-Based Music Genre Classification". SIGIR. 2003, July 28 - August 1. Web. 1 Dec., 2013.</p>
+
 <p>Lidy, Thomas. "Marsyas and Rhythm Patterns: Evaluation of two music genre classification systems." <a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.144.1952&amp;rep=rep1&amp;type=pdf">http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.144.1952&amp;rep=rep1&amp;type=pdf</a>.</p>
+
+<p>Mandel, et al. "Song Level Features and Support Vector Machines for Music Classification". 2005, Queen Mary University, London.</p>
 
 <p>Mathieu, et al. "Yaafe, an Easy to Use and Efficient Audio Feature Extraction Software." Institut Telecom. <a href="http://biblio.telecom-paristech.fr/cgi-bin/download.cgi?id=10395">http://biblio.telecom-paristech.fr/cgi-bin/download.cgi?id=10395</a>.</p>
 
