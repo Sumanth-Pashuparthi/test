@@ -4,11 +4,11 @@
   <head>
     <meta charset='utf-8' />
     <meta http-equiv="X-UA-Compatible" content="chrome=1" />
-    <meta name="description" content="Genre Classification : Classifying genres based on musical features (extracted using Marsyas) and lyrics." />
+    <meta name="description" content="Music and Lyrics : Genre classification based on musical features and lyrics." />
 
     <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
 
-    <title>Genre Classification</title>
+    <title>Music and Lyrics</title>
   </head>
 
   <body>
@@ -18,8 +18,8 @@
         <header class="inner">
           <a id="forkme_banner" href="https://github.com/josh-jacobson/genre-classification">View on GitHub</a>
 
-          <h1 id="project_title">Genre Classification</h1>
-          <h2 id="project_tagline">Classifying genres based on musical features (extracted using Marsyas) and lyrics.</h2>
+          <h1 id="project_title">Music and Lyrics</h1>
+          <h2 id="project_tagline">Genre classification based on musical features and lyrics.</h2>
 
             <section id="downloads">
               <a class="zip_download_link" href="https://github.com/josh-jacobson/genre-classification/zipball/master">Download this project as a .zip file</a>
@@ -34,7 +34,7 @@
         <h3>
 <a name="abstract" class="anchor" href="#abstract"><span class="octicon octicon-link"></span></a>Abstract</h3>
 
-<p>We would like to make a system that is able to determine a song’s genre, based on a combination of low-level audio features and lyrical content. We tend to combine the most relevant low level and lyrical features, utilizing boosting to create the most powerful classification tool we can.</p>
+<p>Our goal is to make a system that is able to determine a song’s genre, based on a combination of low-level audio features and lyrical content. We tend to combine the most relevant low level and lyrical features, utilizing boosting to create the most powerful classification tool we can.</p>
 
 <h3>
 <a name="motivation" class="anchor" href="#motivation"><span class="octicon octicon-link"></span></a>Motivation</h3>
@@ -62,9 +62,7 @@ $ ./mkcollection -c rock.mf -l rock ~/Desktop/genres/rock/
 
 <p>and then used these collections to extract features based on genre.</p>
 
-<pre><code>
-$ ./bextract -sv blues.mf country.mf disco.mf -w genres.arff -p genres.mpl 
-
+<pre><code>$ ./bextract -sv blues.mf country.mf disco.mf -w genres.arff -p genres.mpl 
 </code></pre>
 
 <p>Our results.</p>
@@ -81,17 +79,35 @@ $ ./bextract -sv blues.mf country.mf disco.mf -w genres.arff -p genres.mpl
 <h3>
 <a name="our-team" class="anchor" href="#our-team"><span class="octicon octicon-link"></span></a>Our Team</h3>
 
-<p>Moritz Gellner (<a href="https://github.com/moritzg91" class="user-mention">@moritzg91</a>)
-Josh Jacobson (<a href="https://github.com/josh-jacobson" class="user-mention">@josh-jacobson</a>)
-Carson Potter (<a href="https://github.com/cpottamus" class="user-mention">@cpottamus</a>)
-Sam Toizer (<a href="https://github.com/sammysf" class="user-mention">@sammysf</a>)</p>
+<p>Moritz Gellner (<a href="https://github.com/moritzg91" class="user-mention">@moritzg91</a>)</p>
+
+<p>Josh Jacobson (<a href="https://github.com/josh-jacobson" class="user-mention">@josh-jacobson</a>)</p>
+
+<p>Carson Potter (<a href="https://github.com/cpottamus" class="user-mention">@cpottamus</a>)</p>
+
+<p>Sam Toizer (<a href="https://github.com/sammysf" class="user-mention">@sammysf</a>)</p>
+
+<p>We're all seniors at Northwestern University, and this is our final project for Machine Learning (EECS 349) with Bryan Pardo.</p>
+
+<h3>
+<a name="references" class="anchor" href="#references"><span class="octicon octicon-link"></span></a>References</h3>
+
+<p>Basili et al. “Classification of Musical Genre: A Machine Learning Approach.”</p>
+
+<p>Cuthbert, et al. "Feature Extraction and Machine Learning on Symbolic Music Using the music21 Toolkit". 12th International Society for Music Information Retrieval Conference, 2011. (<a href="http://ismir2011.ismir.net/papers/PS3-6.pdf">http://ismir2011.ismir.net/papers/PS3-6.pdf</a>)</p>
+
+<p>Mathieu, et al. "Yaafe, an Easy to Use and Efficient Audio Feature Extraction Software." Institut Telecom. (<a href="http://biblio.telecom-paristech.fr/cgi-bin/download.cgi?id=10395">http://biblio.telecom-paristech.fr/cgi-bin/download.cgi?id=10395</a>)</p>
+
+<p>Bob L. Sturm. 2012. An analysis of the GTZAN music genre dataset. In Proceedings of the second international ACM workshop on Music information retrieval with user-centered and multimodal strategies (MIRUM '12). ACM, New York, NY, USA, 7-12. DOI=10.1145/2390848.2390851 <a href="http://doi.acm.org/10.1145/2390848.2390851">http://doi.acm.org/10.1145/2390848.2390851</a></p>
+
+<p>Tzanetakis, G., and Cook, P. "Musical Genre Classification of Audio Signals." IEEE Transactions on Speech and Audio Processing 10.5 (2002): 293-302. Web. 12 Nov. 2013. <a href="http://dspace.library.uvic.ca:8080/bitstream/handle/1828/1344/tsap02gtzan.pdf?sequence=1">http://dspace.library.uvic.ca:8080/bitstream/handle/1828/1344/tsap02gtzan.pdf?sequence=1</a>.</p>
       </section>
     </div>
 
     <!-- FOOTER  -->
     <div id="footer_wrap" class="outer">
       <footer class="inner">
-        <p class="copyright">Genre Classification maintained by <a href="https://github.com/josh-jacobson">josh-jacobson</a></p>
+        <p class="copyright">Music and Lyrics maintained by <a href="https://github.com/josh-jacobson">josh-jacobson</a></p>
         <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
       </footer>
     </div>
