@@ -5,7 +5,7 @@ from string import punctuation
 import math
 
 NUMBER_OF_GENRES = 2
-MUSIC_DIRECTORY = 'Music'
+MUSIC_DIRECTORY = 'lyrics'
 TEST_DIRECTORY = 'ZZZTestFiles'
 
 ###########################################################################
