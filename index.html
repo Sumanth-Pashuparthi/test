@@ -77,11 +77,11 @@ $ ./mkcollection -c rock.mf -l rock ~/Desktop/genres/rock/
 <h3>
 <a name="dataset" class="anchor" href="#dataset"><span class="octicon octicon-link"></span></a>Dataset</h3>
 
-<p>We’re considering using the GTZAN Dataset, which contains 1,000 musical excerpts, each 30 seconds long. The dataset represents an even distribution of 10 genres, so there are 100 songs of each genre. The audio files are all mono and in .wav format, with a sample rate of 22,050 Hz and a bit depth of 16 bits per sample.</p>
+<p>We’re using the GTZAN Dataset, which contains 10 genres with 100 musical excerpts each. Given our focus on lyrics, we've decided to exclude jazz and classical since they are mainly instrumental genres. The audio files are each 30 seconds long, and are mono .wav files with a sample rate of 22,050 Hz and a bit depth of 16 bits per sample.</p>
 
-<p>The audio comes from a number of sources, including radio and field recordings in addition to excerpts from normal studio-recorded CD’s. This variation allows for a higher level of robustness in evaluating our learner. The large volume of recordings in the dataset will also allow us flexibility in constructing training and validation sets, and potentially evaluating the learning algorithm using cross-validation.</p>
+<p>The audio comes from a number of sources, including radio and field recordings in addition to excerpts from normal studio-recorded CD’s. This variation allows for a higher level of robustness in evaluating our learner.</p>
 
-<p>The biggest probably issue with the GTZAN dataset is the incomplete labelling of artists and titles, due to the large period of collection of the songs by Tzanetakis. We're working with Professor Pardo to either implement a solution using a song discovery tool such as Shazam or SoundHound, or to find an alternative, more labelled, dataset. Knowing the song information is critical for finding the lyrics.</p>
+<p>As provided directly from the Marsyas website, the GTZAN audio excerpts are unlabeled -- each filename is just the genre and a number from 0 to 99. However, Bob Sturm has provided song names and artists for most of the excerpts (his paper with this information is cited below). We have filled in in some of the gaps in his labeling using song identification tools like Shazam, and we use this information in order to fetch lyrics for the songs.</p>
 
 <h3>
 <a name="our-team" class="anchor" href="#our-team"><span class="octicon octicon-link"></span></a>Our Team</h3>
@@ -111,7 +111,7 @@ $ ./mkcollection -c rock.mf -l rock ~/Desktop/genres/rock/
 
 <p>Tzanetakis, George. "Marsyas: A Framework For Audio Analysis." Web. 2 Dec. 2013. <a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.83.4572&amp;rep=rep1&amp;type=pdf">http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.83.4572&amp;rep=rep1&amp;type=pdf</a></p>
 
-<p>Tzanetakis, George. "Marsyas-0.2: A Case Study in Implementing Music Information Retrieval Systems." Web. 2 Dec. 2013. <a href="https://www.google.com/urlsa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=6&amp;ved=0CF0QFjAF&amp;url=http%3A%2F%2Fwww.researchgate.net%2Fpublication%2F228373711_Marsyas0.2_a_case_study_in_implementing_music_information_retrieval_systems%2Ffile%2F79e4150f71a5d0e62b.pdf&amp;ei=iZieUu_rGdPeyQHWwoDIDA&amp;usg=AFQjCNEUwdIRKlfuVB8RQ0FNCI6su7_YVA&amp;sig2=S1YSDrzXWHqGndiJzVfYTA&amp;bvm=bv.57155469,d.aWc&amp;cad=rja">https://www.google.com/urlsa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=6&amp;ved=0CF0QFjAF&amp;url=http%3A%2F%2Fwww.researchgate.net%2Fpublication%2F228373711_Marsyas0.2_a_case_study_in_implementing_music_information_retrieval_systems%2Ffile%2F79e4150f71a5d0e62b.pdf&amp;ei=iZieUu_rGdPeyQHWwoDIDA&amp;usg=AFQjCNEUwdIRKlfuVB8RQ0FNCI6su7_YVA&amp;sig2=S1YSDrzXWHqGndiJzVfYTA&amp;bvm=bv.57155469,d.aWc&amp;cad=rja</a>.</p>
+<p>Tzanetakis, George. "Marsyas-0.2: A Case Study in Implementing Music Information Retrieval Systems." Web. 2 Dec. 2013.</p>
 
 <p>Tzanetakis, et al. "Pitch Histograms in Audio and Symbolic Music Information Retrieval." <a href="http://www.cs.cmu.edu/%7Egtzan/work/pubs/ismir02gtzan.pdf">http://www.cs.cmu.edu/~gtzan/work/pubs/ismir02gtzan.pdf</a>.</p>
 
