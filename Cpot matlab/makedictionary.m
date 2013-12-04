@@ -25,7 +25,7 @@ for i = 1:LEN
     %Read it in by it's name.
     [fileDir{i, 2}, ~, fileDir{i, 3}] = readInDirectory(fileDir{i, 1});
     %Store all words by concatenating
-    totalWords = [totalWords:fileDir{i,2}];
+    totalWords = [totalWords,fileDir{i,2}];
 end
 totalWords = unique(totalWords);
 
@@ -33,8 +33,6 @@ totalWords = unique(totalWords);
 fileDir{1,4}{1} = totalWords;
 dictLen = length(fileDir{1,4}{1});
 
-%open up the file for printing.
-fid = fopen(dictionary_filename, 'w');
 
 %For all the words
 for i=1:LEN
@@ -73,11 +71,11 @@ for i=1:LEN
     
 end
 
-for i = 1:LEN
+for i = 1:LEN-1
     %Right now dictionary has the count of each file a word occurred in for
     %spam (column 2) and ham (column 3). Here we divide each row by the total
     %number of spam(2) and ham(3) files for that column, to get probability.
-    Table = [Table:fileDir{1,4}{i}, '\t']
+    Table = [Table,fileDir{1,4}{i}, '\t']
     for k = 1:dictLen
         
         %Add Pseudo-count
@@ -85,10 +83,10 @@ for i = 1:LEN
         
         
         
-        Table = [Table:fileDir{1,4}{i}(m), '\t'];
+        Table = [Table:fileDir{1,4}{i+1}(m), '\t'];
         %print the file.
     end
-    Table = [Table:'\n'];
+    Table = [Table,'\n'];
     
 end
 
