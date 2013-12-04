@@ -97,7 +97,10 @@ for sn in songArtistNames:
             folder = chunks[0]
             
             f = open(outFolder + '/' + folder + "/" + str(LyricChecksum) + "." + str(LyricId),'w')
-            f.write(ltext)
+            try:
+                f.write(ltext)
+            except UnicodeEncodeError:
+                f.write("FailedToWriteLyricsError")
             f.close()
             found = True
             break
