@@ -4,7 +4,7 @@ import re
 from string import punctuation
 import math
 
-NUMBER_OF_GENRES = 2
+NUMBER_OF_GENRES = 5
 MUSIC_DIRECTORY = 'lyrics'
 TEST_DIRECTORY = 'ZZZTestFiles'
 
@@ -12,6 +12,7 @@ TEST_DIRECTORY = 'ZZZTestFiles'
 # Move files to a temporary testing directory for validation
 ############################################################################
 def moveFiles():
+	print "Moving files for testing...\n"
 	NUMBER_OF_FOLDS = 10
 
 	# Initialize variables
@@ -26,11 +27,17 @@ def moveFiles():
 
 	# Get all file counts
 	for genreDirectory in genreDirectories:
-		if genreDirectory != TEST_DIRECTORY:
+		if genreDirectory[0] != '.' and genreDirectory != TEST_DIRECTORY:
 			files = os.listdir(os.getcwd() + '/' + genreDirectory)
 			# for i in xrange(len(files)/NUMBER_OF_FOLDS):
-			for i in xrange(5):
+			i = 0
+			filesToMove = 5
+			while i < filesToMove:
+				if files[i][0] == '.':
+					i += 1
+					filesToMove += 1
 				os.rename(genreDirectory + '/' + files[i], TEST_DIRECTORY + '/' + genreDirectory+'_'+files[i])
+				i += 1
 
 
 	# 	totalFileCount += curCount
@@ -70,12 +77,12 @@ def buildDictionary():
 
 	index = 0
 	fileCounts = [0] * NUMBER_OF_GENRES # Save total number of files in all genres
-	for index in xrange(len(genreDirectories)-1):
-		genreDirectory = genreDirectories[index]
-		if genreDirectory[0] != '.':
+	for genreDirectory in genreDirectories:
+		if genreDirectory[0] != '.' and genreDirectory != TEST_DIRECTORY:
 			retVals = readGenre(dictionary, genreDirectory + "/", index)
 			dictionary = retVals[0]
 			fileCounts[index] = retVals[1]
+			index += 1
 
 	# Convert to percentages, add to file
 	os.chdir('..')
@@ -86,6 +93,7 @@ def buildDictionary():
 	for key in dictKeys:
 		counts = dictionary[key]
 		counts = [float(count)/(numFiles+1) for count,numFiles in zip(counts, fileCounts)]
+		dictionary[key] = counts
 		dictFile.write(key + ' ')
 		dictFile.write(' '.join(str(c) for c in counts))
 		dictFile.write('\n')
@@ -111,7 +119,6 @@ def readGenre(dictionary, path, genreNumber):
 		if filename[0] != '.':
 			# Read file
 			words = readFile(path + "/" + filename)
-
 
 			# Add to dictionary
 			for word in words:
@@ -139,9 +146,9 @@ def readFile(filename):
 	# words = re.findall(r'[\w]+', content)     # Get array of words
 	# words = re.split('\W+', content)
 	words = [word.strip(punctuation) for word in content.split()]
-	words = set(words)                        # Get unique words
-	words = list(words)                       # Turn set into list so we can access elements
 	words = [word.upper() for word in words]  # Make all words lowercase
+	words = set(words)                        # Get unique words
+	words = list(words)                       # Turn set into list so we can access elements	
 	words.sort()                           	  # Sort anti-alphabetically (why, Python?)
 	words.reverse()                           # Reverse
 
@@ -150,16 +157,26 @@ def readFile(filename):
 ###########################################################################
 ###########################################################################
 def validate(dictionary):
+	print "\nClassifications:"
 	os.chdir(MUSIC_DIRECTORY + '/' + TEST_DIRECTORY)
 	testFiles = os.listdir(os.getcwd())
 	for testFile in testFiles:
-		totalProbs = [math.log(0.125, 2)] * NUMBER_OF_GENRES
-		words = readFile(testFile)
-		for word in words:
-			if word in dictionary:
-				totalProbs = [prob+math.log(wordProb,2) for prob,wordProb in zip(totalProbs, dictionary[word])]
+		if testFile[0] != '.':
+			baseProb = float(1)/NUMBER_OF_GENRES
+			totalProbs = [math.log(baseProb, 2)] * NUMBER_OF_GENRES
+			words = readFile(testFile)
+			for word in words:
+				if word in dictionary:
+					# print "   Word: " + word
+					# print "     " + str(totalProbs)
+					# print "   - " + str([math.log(wordProb,2) for wordProb in dictionary[word]]) + " from " + str(dictionary[word])			
+					totalProbs = [prob+math.log(wordProb,2) for prob,wordProb in zip(totalProbs, dictionary[word])]
+					# print "     " + str(totalProbs)
+					# print ""
 
-		print "I would classify " + testFile + " as genre number " + str(totalProbs.index(max(totalProbs)))
+
+			genres = os.listdir('..')
+			print "I would classify " + testFile + " as " + genres[totalProbs.index(max(totalProbs))]
 
 	os.chdir('../..')
 
@@ -177,7 +194,9 @@ def moveFilesBack():
 
 
 # Main
-moveFiles()
+print ""
+
 dict = buildDictionary()
+moveFiles()
 validate(dict)
 moveFilesBack()
