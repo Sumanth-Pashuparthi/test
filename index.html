@@ -105,13 +105,13 @@ $ ./mkcollection -c rock.mf -l rock ~/Desktop/genres/rock/
 <h3>
 <a name="initial-results-lyrics" class="anchor" href="#initial-results-lyrics"><span class="octicon octicon-link"></span></a>Initial Results: Lyrics</h3>
 
-<p>With five genres (Blues, Country, Disco, Hip Hop, and Metal), we pulled out five files from each for testing and used the rest to train the learner.  This means we trained with 24 blues files, 40 country files, 33 disco files, 49 hip hop files, and 27 metal files, or 173 files total.</p>
+<p>We're still scraping lyrics from ChartLyrics.  We currently have 198 files in five genres. With five genres (Blues, Country, Disco, Hip Hop, and Metal), we pulled out five files from each for testing and used the rest to train the learner.  This means we trained with 24 blues files, 40 country files, 33 disco files, 49 hip hop files, and 27 metal files, or 173 files total.</p>
 
 <p>We found that we correctly classified 64% of songs.  Below is the confusion matrix.  It looks like we mainly misclassified songs as hip hop, which might simply be due to the fact that there are SO MANY words in hip hop songs.  We classified 12 songs as hip hop even though only 5 were hip hop.  We may need to introduce an additional heuristic that just counts the number of words in a song.  Most hip hop songs are probably longer than most blues songs.</p>
 
-<p>The confusion table for these initial results is shown below:</p>
+<p>The confusion matrix for these initial results is shown below:</p>
 
-<p><img src="https://dl.dropboxusercontent.com/u/61350515/lyrics.png" alt="Confusion table for lyrics results"></p>
+<p><img src="https://dl.dropboxusercontent.com/u/61350515/lyrics.png" alt="Confusion matrix for lyrics results"></p>
 
 <h3>
 <a name="dataset" class="anchor" href="#dataset"><span class="octicon octicon-link"></span></a>Dataset</h3>
