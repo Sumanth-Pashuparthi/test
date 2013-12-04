@@ -61,7 +61,9 @@ Research by Tzanetakis suggests that pitch is also a power classification tool f
 <h3>
 <a name="lyrical-analysis--classification" class="anchor" href="#lyrical-analysis--classification"><span class="octicon octicon-link"></span></a>Lyrical Analysis &amp; Classification</h3>
 
-<p>Brief summary of data acquisition, sanitation, setbacks, and classification. </p>
+<p>We collected lyrics data using a python script in conjunction with the ChartLyrics API. We created a list of song and artist names contained in the GTZAN dataset based on a list provided by George T., then pulled the lyrics for these tracks from ChartLyrics. We decided not to attempt lyrics-based classification for jazz and classical because songs from these two genres are mostly instrumentals.</p>
+
+<p>Even though we were unable to find the lyrics for some songs in the database, and some songs in the dataset turned out to be instrumentals, we were able to successfully scrape lyrics for &gt;90% of the songs that we tried. Using a two-dimensional classifier (specifically, training/classifying country vs. disco) yielded a prediction accuracy of ~75%. Even though we are yet to run formal statistical analyses, it seems evident that this is better than the "blind" prediction accuracy of 50%. </p>
 
 <h3>
 <a name="initial-results" class="anchor" href="#initial-results"><span class="octicon octicon-link"></span></a>Initial Results</h3>
