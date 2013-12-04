@@ -32,36 +32,59 @@
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
         <h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
+<a name="abstract" class="anchor" href="#abstract"><span class="octicon octicon-link"></span></a>Abstract</h3>
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
+<p>We would like to make a system that is able to determine a song’s genre, based on a combination of low-level audio features and lyrical content. We tend to combine the most relevant low level and lyrical features, utilizing boosting to create the most powerful classification tool we can.</p>
 
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
+<h3>
+<a name="motivation" class="anchor" href="#motivation"><span class="octicon octicon-link"></span></a>Motivation</h3>
+
+<p>Our interest in this topic arises from a passion for music, and the process of classifying genres with a machine learning method will reveal a lot about the fundamental characteristics of different genres and the underlying mathematical nature of all music.</p>
+
+<p>This work has many practical applications.  For instance, it may be used for cataloguing music when it’s uploaded to a library, or as a basis for a song suggestion application. In theory, a major extension of this learning algorithm could even allow for computer construction of basic song forms of a particular genre.</p>
+
+<p>The applications of this feature extraction and use may also reveal important characteristics about what lyrical tendencies and audio features are determinant in a song's qualities. This knowledge has applications beyond genre classification and could be used for many other applications of audio analysis and classification.</p>
+
+<h3>
+<a name="initial-results" class="anchor" href="#initial-results"><span class="octicon octicon-link"></span></a>Initial Results</h3>
+
+<p>We've had success in using Marsyas to extract features from the audio files in our dataset, of which there are 100 in each of 8 genres. We first created a collection file for each genre:</p>
+
+<pre><code>$ ./mkcollection -c blues.mf -l blues ~/Desktop/genres/blues/
+$ ./mkcollection -c country.mf -l country ~/Desktop/genres/country/ 
+$ ./mkcollection -c disco.mf -l disco ~/Desktop/genres/disco/
+$ ./mkcollection -c hiphop.mf -l hiphop ~/Desktop/genres/hiphop/
+$ ./mkcollection -c metal.mf -l metal ~/Desktop/genres/metal/
+$ ./mkcollection -c pop.mf -l pop ~/Desktop/genres/pop/
+$ ./mkcollection -c reggae.mf -l reggae ~/Desktop/genres/reggae/
+$ ./mkcollection -c rock.mf -l rock ~/Desktop/genres/rock/
 </code></pre>
 
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
+<p>and then used these collections to extract features based on genre.</p>
+
+<pre><code>
+$ ./bextract -sv blues.mf country.mf disco.mf -w genres.arff -p genres.mpl 
+
+</code></pre>
+
+<p>Our results.</p>
 
 <h3>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
+<a name="dataset" class="anchor" href="#dataset"><span class="octicon octicon-link"></span></a>Dataset</h3>
 
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
+<p>We’re considering using the GTZAN Dataset, which contains 1,000 musical excerpts, each 30 seconds long. The dataset represents an even distribution of 10 genres, so there are 100 songs of each genre. The audio files are all mono and in .wav format, with a sample rate of 22,050 Hz and a bit depth of 16 bits per sample.</p>
 
-<h3>
-<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
+<p>The audio comes from a number of sources, including radio and field recordings in addition to excerpts from normal studio-recorded CD’s. This variation allows for a higher level of robustness in evaluating our learner. The large volume of recordings in the dataset will also allow us flexibility in constructing training and validation sets, and potentially evaluating the learning algorithm using cross-validation.</p>
 
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
-
-<h3>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
-
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
+<p>The biggest probably issue with the GTZAN dataset is the incomplete labelling of artists and titles, due to the large period of collection of the songs by Tzanetakis. We're working with Professor Pardo to either implement a solution using a song discovery tool such as Shazam or SoundHound, or to find an alternative, more labelled, dataset. Knowing the song information is critical for finding the lyrics.</p>
 
 <h3>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
+<a name="our-team" class="anchor" href="#our-team"><span class="octicon octicon-link"></span></a>Our Team</h3>
 
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
+<p>Moritz Gellner (<a href="https://github.com/moritzg91" class="user-mention">@moritzg91</a>)
+Josh Jacobson (<a href="https://github.com/josh-jacobson" class="user-mention">@josh-jacobson</a>)
+Carson Potter (<a href="https://github.com/cpottamus" class="user-mention">@cpottamus</a>)
+Sam Toizer (<a href="https://github.com/sammysf" class="user-mention">@sammysf</a>)</p>
       </section>
     </div>
 
