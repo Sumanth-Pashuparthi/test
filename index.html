@@ -46,6 +46,13 @@
 <p>The applications of this feature extraction and use may also reveal important characteristics about what lyrical tendencies and audio features are determinant in a song's qualities. This knowledge has applications beyond genre classification and could be used for many other applications of audio analysis and classification.</p>
 
 <h3>
+<a name="tools" class="anchor" href="#tools"><span class="octicon octicon-link"></span></a>Tools</h3>
+
+<p>We are using Marsyas (Music Analysis, Retrieval and Synthesis for Audio Signals), an open-source audio processing framework written by George Tzanetakis. This framework provides a number of useful tools for Music Information Retrieval applications like ours, and we use this software to extract features from audio files in our dataset.</p>
+
+<p>We are also using the ChartLyrics API in order to fetch lyrics for each of the songs. These lyrics are used alongside audio features as input to our learner.</p>
+
+<h3>
 <a name="initial-results" class="anchor" href="#initial-results"><span class="octicon octicon-link"></span></a>Initial Results</h3>
 
 <p>We've had success in using Marsyas to extract features from the audio files in our dataset, of which there are 100 in each of 8 genres. We first created a collection file for each genre:</p>
@@ -94,11 +101,19 @@ $ ./mkcollection -c rock.mf -l rock ~/Desktop/genres/rock/
 
 <p>Basili et al. “Classification of Musical Genre: A Machine Learning Approach.”</p>
 
-<p>Cuthbert, et al. "Feature Extraction and Machine Learning on Symbolic Music Using the music21 Toolkit". 12th International Society for Music Information Retrieval Conference, 2011. (<a href="http://ismir2011.ismir.net/papers/PS3-6.pdf">http://ismir2011.ismir.net/papers/PS3-6.pdf</a>)</p>
+<p>Cuthbert, et al. "Feature Extraction and Machine Learning on Symbolic Music Using the music21 Toolkit". 12th International Society for Music Information Retrieval Conference, 2011. <a href="http://ismir2011.ismir.net/papers/PS3-6.pdf">http://ismir2011.ismir.net/papers/PS3-6.pdf</a>.</p>
 
-<p>Mathieu, et al. "Yaafe, an Easy to Use and Efficient Audio Feature Extraction Software." Institut Telecom. (<a href="http://biblio.telecom-paristech.fr/cgi-bin/download.cgi?id=10395">http://biblio.telecom-paristech.fr/cgi-bin/download.cgi?id=10395</a>)</p>
+<p>Lidy, Thomas. "Marsyas and Rhythm Patterns: Evaluation of two music genre classification systems." <a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.144.1952&amp;rep=rep1&amp;type=pdf">http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.144.1952&amp;rep=rep1&amp;type=pdf</a>.</p>
 
-<p>Bob L. Sturm. 2012. An analysis of the GTZAN music genre dataset. In Proceedings of the second international ACM workshop on Music information retrieval with user-centered and multimodal strategies (MIRUM '12). ACM, New York, NY, USA, 7-12. DOI=10.1145/2390848.2390851 <a href="http://doi.acm.org/10.1145/2390848.2390851">http://doi.acm.org/10.1145/2390848.2390851</a></p>
+<p>Mathieu, et al. "Yaafe, an Easy to Use and Efficient Audio Feature Extraction Software." Institut Telecom. <a href="http://biblio.telecom-paristech.fr/cgi-bin/download.cgi?id=10395">http://biblio.telecom-paristech.fr/cgi-bin/download.cgi?id=10395</a>.</p>
+
+<p>Sturm, Bob L., 2012. "An Analysis of the GTZAN Music Genre Dataset", Proc. ACM Workshop MIRUM, Nara, Japan, Nov. 2012. <a href="http://doi.acm.org/10.1145/2390848.2390851">http://doi.acm.org/10.1145/2390848.2390851</a>.</p>
+
+<p>Tzanetakis, George. "Marsyas: A Framework For Audio Analysis." Web. 2 Dec. 2013. <a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.83.4572&amp;rep=rep1&amp;type=pdf">http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.83.4572&amp;rep=rep1&amp;type=pdf</a></p>
+
+<p>Tzanetakis, George. "Marsyas-0.2: A Case Study in Implementing Music Information Retrieval Systems." Web. 2 Dec. 2013. <a href="https://www.google.com/urlsa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=6&amp;ved=0CF0QFjAF&amp;url=http%3A%2F%2Fwww.researchgate.net%2Fpublication%2F228373711_Marsyas0.2_a_case_study_in_implementing_music_information_retrieval_systems%2Ffile%2F79e4150f71a5d0e62b.pdf&amp;ei=iZieUu_rGdPeyQHWwoDIDA&amp;usg=AFQjCNEUwdIRKlfuVB8RQ0FNCI6su7_YVA&amp;sig2=S1YSDrzXWHqGndiJzVfYTA&amp;bvm=bv.57155469,d.aWc&amp;cad=rja">https://www.google.com/urlsa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=6&amp;ved=0CF0QFjAF&amp;url=http%3A%2F%2Fwww.researchgate.net%2Fpublication%2F228373711_Marsyas0.2_a_case_study_in_implementing_music_information_retrieval_systems%2Ffile%2F79e4150f71a5d0e62b.pdf&amp;ei=iZieUu_rGdPeyQHWwoDIDA&amp;usg=AFQjCNEUwdIRKlfuVB8RQ0FNCI6su7_YVA&amp;sig2=S1YSDrzXWHqGndiJzVfYTA&amp;bvm=bv.57155469,d.aWc&amp;cad=rja</a>.</p>
+
+<p>Tzanetakis, et al. "Pitch Histograms in Audio and Symbolic Music Information Retrieval." <a href="http://www.cs.cmu.edu/%7Egtzan/work/pubs/ismir02gtzan.pdf">http://www.cs.cmu.edu/~gtzan/work/pubs/ismir02gtzan.pdf</a>.</p>
 
 <p>Tzanetakis, G., and Cook, P. "Musical Genre Classification of Audio Signals." IEEE Transactions on Speech and Audio Processing 10.5 (2002): 293-302. Web. 12 Nov. 2013. <a href="http://dspace.library.uvic.ca:8080/bitstream/handle/1828/1344/tsap02gtzan.pdf?sequence=1">http://dspace.library.uvic.ca:8080/bitstream/handle/1828/1344/tsap02gtzan.pdf?sequence=1</a>.</p>
       </section>
