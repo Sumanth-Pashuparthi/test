@@ -78,9 +78,9 @@ $ ./mkcollection -c reggae.mf -l reggae ~/Desktop/genres/reggae/
 $ ./mkcollection -c rock.mf -l rock ~/Desktop/genres/rock/
 </code></pre>
 
-<p>and then used these collections to extract features based on genre.</p>
+<p>and then used these collections to extract timbral features (including MFCC's) based on genre.</p>
 
-<pre><code>$ ./bextract -sv blues.mf country.mf disco.mf -w genres.arff -p genres.mpl 
+<pre><code>$ ./bextract -sv -timbral --TimbralFeatures blues.mf country.mf disco.mf hiphop.mf metal.mf pop.mf reggae.mf rock.mf -w genres.arff 
 </code></pre>
 
 <p>Our results.</p>
