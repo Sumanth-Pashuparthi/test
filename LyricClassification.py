@@ -26,10 +26,11 @@ def moveFiles():
 
 	# Get all file counts
 	for genreDirectory in genreDirectories:
-		files = os.listdir(os.getcwd() + '/' + genreDirectory)
-		# for i in xrange(len(files)/NUMBER_OF_FOLDS):
-		for i in xrange(1):
-			os.rename(genreDirectory + '/' + files[i], TEST_DIRECTORY + '/' + genreDirectory+'_'+files[i])
+		if genreDirectory != TEST_DIRECTORY:
+			files = os.listdir(os.getcwd() + '/' + genreDirectory)
+			# for i in xrange(len(files)/NUMBER_OF_FOLDS):
+			for i in xrange(5):
+				os.rename(genreDirectory + '/' + files[i], TEST_DIRECTORY + '/' + genreDirectory+'_'+files[i])
 
 
 	# 	totalFileCount += curCount
