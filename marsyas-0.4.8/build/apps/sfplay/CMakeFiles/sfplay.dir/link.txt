@@ -1,0 +1,1 @@
+/usr/bin/c++   -O3 -DNDEBUG -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/sfplay.dir/sfplay.cpp.o  -o ../../bin/sfplay  ../../lib/libmarsyas.dylib -framework CoreFoundation -framework CoreAudio -framework CoreMIDI 

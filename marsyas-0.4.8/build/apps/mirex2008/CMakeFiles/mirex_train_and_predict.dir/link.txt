@@ -1,0 +1,1 @@
+/usr/bin/c++   -O3 -DNDEBUG -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/mirex_train_and_predict.dir/mirex_train_and_predict.cpp.o  -o ../../bin/mirex_train_and_predict  ../../lib/libmarsyas.dylib -framework CoreFoundation -framework CoreAudio -framework CoreMIDI 

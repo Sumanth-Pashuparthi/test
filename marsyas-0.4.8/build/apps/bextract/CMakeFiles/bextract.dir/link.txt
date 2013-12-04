@@ -1,0 +1,1 @@
+/usr/bin/c++   -O3 -DNDEBUG -Wl,-search_paths_first -Wl,-headerpad_max_install_names   CMakeFiles/bextract.dir/bextract.cpp.o  -o ../../bin/bextract  ../../lib/libmarsyas.dylib -framework CoreFoundation -framework CoreAudio -framework CoreMIDI 
