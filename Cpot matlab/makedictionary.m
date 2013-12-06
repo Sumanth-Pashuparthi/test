@@ -1,4 +1,4 @@
-function makedictionary( directory, dictionary_filename )
+function [Table] = makedictionary( directory, dictionary_filename )
 %makedictionary: This function will take in 2 directories of ASCII text
 %files.
 %
@@ -25,7 +25,7 @@ for i = 1:LEN
     %Read it in by it's name.
     [fileDir{i, 2}, ~, fileDir{i, 3}] = readInDirectory(fileDir{i, 1});
     %Store all words by concatenating
-    totalWords = [totalWords,fileDir{i,2}];
+    totalWords = [totalWords,fileDir{i,2}'];
 end
 totalWords = unique(totalWords);
 
@@ -70,20 +70,20 @@ for i=1:LEN
     end
     
 end
-
-for i = 1:LEN-1
+Table='';
+for k = 1:dictLen
     %Right now dictionary has the count of each file a word occurred in for
     %spam (column 2) and ham (column 3). Here we divide each row by the total
     %number of spam(2) and ham(3) files for that column, to get probability.
-    Table = [Table,fileDir{1,4}{i}, '\t']
-    for k = 1:dictLen
+    Table = [Table,fileDir{1,4}{1}{k}, '\t'];
+    for m = 1:LEN
         
         %Add Pseudo-count
-        fileDir{1, 4}{i+1}(k) = fileDir{1,4}{i+1}(k)/(dictLen+1);
+        fileDir{1, 4}{m+1}(k) = fileDir{1,4}{m+1}(k)/(dictLen+1);
         
         
         
-        Table = [Table:fileDir{1,4}{i+1}(m), '\t'];
+        Table = [Table, fileDir{1,4}{m+1}(k), '\t'];
         %print the file.
     end
     Table = [Table,'\n'];
