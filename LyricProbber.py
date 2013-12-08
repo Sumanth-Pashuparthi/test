@@ -38,34 +38,12 @@ def moveFiles():
 					filesToMove += 1
 				os.rename(genreDirectory + '/' + files[i], TEST_DIRECTORY + '/' + genreDirectory+'_'+files[i])
 				i += 1
-
-
-	# 	totalFileCount += curCount
-	# 	fileCounts.append(curCount)
-
-
-	
-
-	# # Create random permutation of file numbers
-	# # fileNums = list(xrange(totalFileCount))
-	# # random.shuffle(fileNums)
-
-	# # for i in xrange(totalFileCount/NUMBER_OF_FOLDS):
-	# for i in xrange(2):
-	# 	fileNum = fileNums[i]
-	# 	j = 0
-	# 	while fileNum >= fileCounts[j]:
-	# 		j += 1
-	# 		fileNum -= fileCounts[j]
-
-	# 	fileName = os.listdir(genreDirectories[j])[fileNum]
-	# 	fileCounts[j] -= 1
-	# 	os.rename(genreDirectories[j] + '/' + fileName, 'TestFiles/' + fileName)
-
 	os.chdir('..')
 
 
 ###########################################################################
+# Create the dictionary.  This saves the dictionary into a file for 
+# debugging, but internally just returns the hashtable.
 ###########################################################################
 def buildDictionary():
 	os.chdir(MUSIC_DIRECTORY)
@@ -76,12 +54,12 @@ def buildDictionary():
 	genreDirectories = os.listdir(dir)
 
 	index = 0
-	fileCounts = [0] * NUMBER_OF_GENRES # Save total number of files in all genres
+	wordCounts = [0] * NUMBER_OF_GENRES # Save total number of files in all genres
 	for genreDirectory in genreDirectories:
 		if genreDirectory[0] != '.' and genreDirectory != TEST_DIRECTORY:
 			retVals = readGenre(dictionary, genreDirectory + "/", index)
 			dictionary = retVals[0]
-			fileCounts[index] = retVals[1]
+			wordCounts[index] = retVals[1]
 			index += 1
 
 	# Convert to percentages, add to file
@@ -92,7 +70,7 @@ def buildDictionary():
 	dictKeys.reverse()
 	for key in dictKeys:
 		counts = dictionary[key]
-		counts = [float(count)/(numFiles+1) for count,numFiles in zip(counts, fileCounts)]
+		counts = [float(count)/(wordCount) for count,wordCount in zip(counts, wordCounts)] # Kluge!
 		dictionary[key] = counts
 		dictFile.write(key + ' ')
 		dictFile.write(' '.join(str(c) for c in counts))
@@ -103,7 +81,7 @@ def buildDictionary():
 
 ###########################################################################
 # Read every file in a genre and add all unique COUNTS to a dictionary
-# Returns the dictionary as well as the number of files read
+# Returns the dictionary as well as the number of words in each genre
 #   NOTE: the return dictionary contains counts, not percentages, so the calling
 #         function will have to deal with that
 ###########################################################################
@@ -112,7 +90,7 @@ def readGenre(dictionary, path, genreNumber):
 
 	dir = os.getcwd()
 	files = os.listdir(dir + "/" + path)
-	numberOfFiles = 0
+	numberOfWords = 0
 
 
 	for filename in files:
@@ -126,16 +104,16 @@ def readGenre(dictionary, path, genreNumber):
 					counts = dictionary[word]
 					counts[genreNumber] += 1
 				else:
-					counts = [1] * NUMBER_OF_GENRES # Kluge
+					counts = [0] * NUMBER_OF_GENRES # Kluge
 					counts[genreNumber] += 1
 				dictionary[word] = counts
 
-			numberOfFiles += 1
+			numberOfWords += len(words)
 
-	return [dictionary, numberOfFiles]
+	return [dictionary, numberOfWords]
 
 ###########################################################################
-# Read a file and return all unique words
+# Read a file and return all words
 ###########################################################################
 def readFile(filename):
 	file = open(filename, 'r')
@@ -143,18 +121,15 @@ def readFile(filename):
 	file.close()
 
 	# Could all be combined into one line, but spread into multiple lines for clarity
-	# words = re.findall(r'[\w]+', content)     # Get array of words
-	# words = re.split('\W+', content)
 	words = [word.strip(punctuation) for word in content.split()]
 	words = [word.upper() for word in words]  # Make all words lowercase
-	words = set(words)                        # Get unique words
-	words = list(words)                       # Turn set into list so we can access elements	
 	words.sort()                           	  # Sort anti-alphabetically (why, Python?)
 	words.reverse()                           # Reverse
 
 	return words
 
 ###########################################################################
+# Go through all of the test files and assign a genre to them
 ###########################################################################
 def validate(dictionary):
 	print "\nClassifications:"
@@ -169,18 +144,29 @@ def validate(dictionary):
 				if word in dictionary:
 					# print "   Word: " + word
 					# print "     " + str(totalProbs)
-					# print "   - " + str([math.log(wordProb,2) for wordProb in dictionary[word]]) + " from " + str(dictionary[word])			
-					totalProbs = [prob+math.log(wordProb,2) for prob,wordProb in zip(totalProbs, dictionary[word])]
+					# print "     " + str(dictionary[word])
+					wordProbs = dictionary[word]
+					for i in range(len(wordProbs)):
+						wordProb = wordProbs[i]
+						if wordProb > 0:
+							totalProbs[i] += math.log(wordProb,2)
+
+					# totalProbs = [prob+math.log(wordProb,2) for prob,wordProb in zip(totalProbs, dictionary[word])]
 					# print "     " + str(totalProbs)
 					# print ""
 
 
 			genres = os.listdir('..')
-			print "I would classify " + testFile + " as " + genres[totalProbs.index(max(totalProbs))]
+			index = totalProbs.index(max(totalProbs))
+			if genres[0][0] == '.':
+				index += 1
+			print "I would classify " + testFile + " as " + genres[index]
 
 	os.chdir('../..')
 
-
+###########################################################################
+# Move files back post-testing
+###########################################################################
 def moveFilesBack():
 	os.chdir(MUSIC_DIRECTORY + '/' + TEST_DIRECTORY)
 	testFiles = os.listdir(os.getcwd())
