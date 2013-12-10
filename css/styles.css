@@ -70,7 +70,7 @@ height: 100%;
    Header Styles
    ========================================================================== */
 
-#header{overflow:hidden;height:auto;background: url('http://placehold.it/1920x1080/1a1a1a/F4594E&amptext=1920x1080') fixed no-repeat; height:100%;}
+#header{overflow:hidden;height:auto;background: url('../images/vinyl-player.jpg') fixed no-repeat; height:100%;}
 .no-touch #header{-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover;background-attachment: fixed;}
 
 #logo{display:none;}
