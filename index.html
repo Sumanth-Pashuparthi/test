@@ -201,14 +201,30 @@
 			<div class="row">
 				<div class="col-xs-12 col-sm-6 col-sm-offset-3 intro">
 					<h1>Introduction</h1>
-					<p>Our goal is to make a system that is able to determine a song’s genre, based on a combination of low-level audio features and lyrical content. We tend to combine the most relevant low level and lyrical features, utilizing boosting to create the most powerful classification tool we can.</p>
+                    <h4>Goals and Process</h4>
+					<p>Our goal for this project was to design a system that is able
+                    to determine a song’s genre based on low-level audio features.
+                    We conducted a comparative analysis between classification using audio features
+                    and classification using lyrics. If the accuracy of lyric-based classification
+                    had proved to be significantly higher than using prior probability, we would have attempted to use boosting
+                    to combine lyric- and audio feature- based classification to create a more powerful classifier, but our tests showed
+                    that a naive bayesian classifier using lyrics fails to outperform prior probability by a statistically significant margin,
+                    so our genre classifier ultimately relied solely on analysis of low-level audio features.</p>
 
-          <h1>Motivation</h1>
-          <p>Our interest in this topic arises from a passion for music, and the process of classifying genres with a machine learning method will reveal a lot about the fundamental characteristics of different genres and the underlying mathematical nature of all music.</p>
+                    <h4>Motivation</h4>
+                    <p>Our interest in this topic arises primarily from a passion for music. We hope that the process of classifying
+                    genres with a machine learning method will reveal a lot about the fundamental characteristics of different genres
+                    and the underlying mathematical nature of all music.</p>
 
-<p>This work has many practical applications.  For instance, it may be used for cataloguing music when it’s uploaded to a library, or as a basis for a song suggestion application. In theory, a major extension of this learning algorithm could even allow for computer construction of basic song forms of a particular genre.</p>
-
-<p>The applications of this feature extraction and use may also reveal important characteristics about what lyrical tendencies and audio features are determinant in a song's qualities. This knowledge has applications beyond genre classification and could be used for many other applications of audio analysis and classification.</p>  
+                    <p>Our work has many practical applications.  For instance, it may be used for cataloguing music that is uploaded
+                    to a library, or as a basis for a song recommendation application. In theory, a major extension of this learning
+                    algorithm could even allow for computer construction of basic song forms for a particular genre.
+                    
+                    On a more theoretical note, our feature extraction and classification process may also reveal some of the characteristics,
+                    such as lyrical tendencies and audio features, that determine the way a song is perceived - in other words, the traits of
+                    a song that cause it to be associated with specific genres such as "rock" or "country". This knowledge has applications far
+                    beyond genre classification and could be used for many other applications, including song popularity predictors or
+                    automated music generators to name but a few examples.</p>
 
 				</div>
 			</div>
