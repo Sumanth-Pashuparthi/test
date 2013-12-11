@@ -254,12 +254,12 @@
 
 <p>Even though we were unable to find the lyrics for some songs in the database, and some songs in the dataset turned out to be instrumentals, we were able to successfully scrape lyrics for <span class="number">68.375%</span> of the songs that we tried.  With a total of <span class="number">547</span> songs about evenly distributed among all <span class="number">8</span> genres, we had lyrics for about <span class="number">68</span> songs per genre.</p>
 
-<p>We used three different methods to attempt to classify lyrics, which we call the Existence Method, the Probability Method, and the Word Count Method.  The <span class="number">Existence Method</span> consisted of a Naive Bayes Classifier that used a dictionary made up of words from the songs.  In this method, we only added to a word's probability if it existed at all in a song and didn't increase its probability based on the number of times it was used in a song.  If our training set consisted of genre <i>G</i> with songs with the lyrics: </p>
+<p>We used three different methods to attempt to classify lyrics, which we call the Frequency-Independent Method, the Frequency-Dependent Method, and the Word Count Method.  The <span class="number">Frequency-Independent Method</span> consisted of a Naive Bayes Classifier that used a dictionary made up of words from the songs.  In this method, we only added to a word's probability if it existed at all in a song and didn't increase its probability based on the number of times it was used in a song.  If our training set consisted of genre <i>G</i> with songs with the lyrics: </p>
 	<ul style="list-style-position:inside; list-style-type:none">
 		<li><p><b>Song 1</b>: <i>I love you, you love me</i></p></li>
 		<li><p><b>Song 2</b>: <i>Love is all you need</i></p></li>
 	</ul>
-<p>then the probability of <i>love</i> being in <i>G</i> is <span class="number">1</span>.  The <span class="number">Probability Method</span> was also a Naive Bayes classifier, but the dictionary was calculated differently.  For this method, the probability was number of times a word appeared in a genre over number of words in that genre.  For the above example, the probability of <i>love</i> being in <i>G</i> is <span class="number">3/11</span>, or <span class="number">0.272</span>.  The <span class="number">Word Count Method</span> simply found the average number of words in each genre and classified a song <i>S</i> based on the closest average to the number of words in <i>S</i>.
+<p>then the probability of <i>love</i> being in <i>G</i> is <span class="number">1</span>.  The <span class="number">Frequency-Dependent Method</span> was also a Naive Bayes classifier, but the dictionary was calculated differently.  For this method, the probability was number of times a word appeared in a genre over number of words in that genre.  For the above example, the probability of <i>love</i> being in <i>G</i> is <span class="number">3/11</span>, or <span class="number">0.272</span>.  The <span class="number">Word Count Method</span> simply found the average number of words in each genre and classified a song <i>S</i> based on the closest average to the number of words in <i>S</i>.
 
 
 				</div>
@@ -308,7 +308,7 @@
 						Neither of the Naive Bayes methods to use lyrics as the basis for a genre classifier worked well in practice.  In order to test the statistcal significance of our results, we did 10-fold cross-validation.  We used a single-sample <i>t</i>-test to compare the effectiveness of our method to prior probability.  We used this one because we were attempting to determine if the corrrect classification rates of our methods were statistically different the known correct classification rate of prior probability.
 					</p>
 
-					<br/><h5 id="existence-method"><i>Existence Method</i></h5>			
+					<br/><h5><i>Frequency-Independent Method</i></h5>			
 					<p>
 						This method worked just about as well as prior probability.  The mean correct classification rate was <span class="number">0.1275</span> with a standard deviation of <span class="number">0.0249</span>.  When compared to a prior probability of <span class="number">0.125</span>, there was no statistical difference (<i>p</i> = <span class="number">0.7577</span>).  There was, however, an interesting trend in the data.  This can be seen in the plot of the correct classifiactions and the confusion matrix, both shown below.
 					</p>
@@ -325,7 +325,7 @@
 						Since hip-hop seemed like an outlier in our dataset, we wanted to investigate what the results would look like if the genre wasn't included in the dataset at all.  We found a mean correct classification rate of <span class="number">0.2829</span> with a standard deviation of <span class="number">0.0579</span>.  This was statistically different from the prior probability of <span class="number">0.143</span> (<i>p</i> = <span class="number">3.1505e-5</span>).  Though these results are promising, we were simply following an intellectual curiosity.  Hip-hop is an important genre, and for our classifier to be unable to have it in the dataset is detrimental to its success.
 					</p>
 
-					<br/><h5><i>Probability Method</i></h5>
+					<br/><h5><i>Frequency-Dependent Method</i></h5>
 					<p>
 						This method was nowhere near as successful as the previous method, which wasn't any good itself.  We found a mean correct classification rate of <span class="number">0.900</span> and a standard deviation of <span class="number">0.0316</span>.  This was significantly different from the prior probability of <span class="number">0.125</span>, with <i>p</i> = <span class="number">0.0067</span>.  However, this method was significantly <i>worse</i> than prior probability.  Below are a plot of the correct classifcation rates per genre and a confusion matrix.
 					</p>
