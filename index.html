@@ -202,11 +202,11 @@
                     and classification using lyrics. If the accuracy of lyric-based classification
                     had proved to be significantly higher than using prior probability, we would have attempted to use boosting
                     to combine lyric- and audio feature- based classification to create a more powerful classifier, but our tests showed
-                    that a naive bayesian classifier using lyrics fails to outperform prior probability by a statistically significant margin,
+                    that a naïve Bayesian classifier using lyrics fails to outperform prior probability by a statistically significant margin,
                     so our genre classifier ultimately relied solely on analysis of low-level audio features.</p>
 
                     <h4>Motivation</h4>
-                    <p>Our interest in this topic arises primarily from a passion for music. We hope that the process of classifying
+                    <p>Our interest in this topic arises primarily from a passion for music. The process of classifying
                     genres with a machine learning method will reveal a lot about the fundamental characteristics of different genres
                     and the underlying mathematical nature of all music.</p>
 
@@ -232,10 +232,12 @@
 					<h1>Our Approach</h1></br>
 
 
-
+<p>In order to conduct a comparitive analysis of different classification methods, we approached genre classification from two completely different angles. The first approach utilized Music Information Retrieval (MIR) methods to extract audio features and use these features to train a Bayes Net classifier. The second approach instead makes use of lyrical content, and constructs a Naïve Bayesian Classifier to determine a song's genre based on its lyrics.
 
 
 <h4>Audio Features</h4>
+
+<p>We are using Marsyas (Music Analysis, Retrieval and Synthesis for Audio Signals), an open-source audio processing framework written by George Tzanetakis. This framework provides a number of useful tools for Music Information Retrieval applications like ours, and we use this software to extract features from audio files in our dataset.</p>
 
 <p>In our initial analysis of data, we have begun work with two main audio feature classifiers. We have a matlab script that compiles tempo information on all of our songs, for use classification in WEKA. Tempo is one of our initial features because of its dramatic variation between different styles of music, a distinction that may prove useful in distinguishing between faster (metal) and slower (reggae) genres. Our additional audio feature is Mel-Frequency Cepstral Coefficient (MFCC) analysis. MFCCs are designed to capture short-term spectral-based features and, though initially developed for vocal recognition, have proven highly effective in musical classification. 
 Research by Tzanetakis suggests that pitch is also a power classification tool for genre classification. Unfortunately, we've had a number of issues attempting to extract pitch. Despite attempts with python binding enabled Marsyas, and older versions of Marsyas, we have yet to extract meaningful input. This is something we hope to achieve in the week. Alternatively, we will research other meaningful audio features and find another to extract.</p>
@@ -245,13 +247,6 @@ Research by Tzanetakis suggests that pitch is also a power classification tool f
 <p>We collected lyrics data using a python script in conjunction with the ChartLyrics API. We created a list of song and artist names contained in the GTZAN dataset based on a list provided by George T., then pulled the lyrics for these tracks from ChartLyrics. We decided not to attempt lyrics-based classification for jazz and classical because songs from these two genres are mostly instrumentals.</p>
 
 <p>Even though we were unable to find the lyrics for some songs in the database, and some songs in the dataset turned out to be instrumentals, we were able to successfully scrape lyrics for &gt;90% of the songs that we tried. Using a two-dimensional classifier (specifically, training/classifying country vs. disco) yielded a prediction accuracy of ~75%. Even though we are yet to run formal statistical analyses, it seems evident that this is better than the "blind" prediction accuracy of 50%. </p>
-
-</br><h4>Tools</h4>
-
-<p>We are using Marsyas (Music Analysis, Retrieval and Synthesis for Audio Signals), an open-source audio processing framework written by George Tzanetakis. This framework provides a number of useful tools for Music Information Retrieval applications like ours, and we use this software to extract features from audio files in our dataset.</p>
-
-<p>We are also using the ChartLyrics API in order to fetch lyrics for each of the songs. These lyrics are used alongside audio features as input to our learner.</p>
-
 
 				</div>
 			</div>
