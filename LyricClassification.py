@@ -195,8 +195,7 @@ def moveFilesBack():
 
 # Main
 print ""
-
-dict = buildDictionary()
 moveFiles()
+dict = buildDictionary()
 validate(dict)
 moveFilesBack()
