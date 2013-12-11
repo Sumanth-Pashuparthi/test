@@ -278,7 +278,13 @@
 			<div class="row">
 				<div class="col-xs-12 col-sm-8 col-sm-offset-2 intro">
 					<h1>Results</h1>
-					<br/><h4>Lyrics</h4><br/>
+
+          <br/><h4>Classification With Audio Features</h4><br/>
+          <p>After experimenting with a variety of different learning methods in Weka, we decided to use a Bayes Net classifier. We performed 10-fold cross validation on our dataset, which has a total of 800 examples evenly divided into 8 genres (blues, country, disco, hip hop, metal, pop, reggae, and rock). So in each fold, Weka trains on 90 examples from each class (720 total) and tests on 10 from each class (80 total). We will discuss the overall results for a few different approaches.</p></br>
+
+          <p>First of all, in using all of the audio features presented above, we were able to replicate the classification accuracy achieved by George Tzanetakis in his <a href="http://dspace.library.uvic.ca:8080/bitstream/handle/1828/1344/tsap02gtzan.pdf?sequence=1">paper</a> on genre classification
+
+					<br/><h4>Classification With Lyrics</h4><br/>
 					<p>
 						Neither of the methods to use lyrics as the basis for a genre classifier worked well in practice.  In order to test the statistcal significance of our results, we did 10-fold cross-validation.  We used a single-sample <i>t</i>-test to compare the effectiveness of our method to prior probability.  We used this one because we were attempting to determine if the corrrect classification rates of our methods were statistically different the known correct classification rate of prior probability.
 					</p>
