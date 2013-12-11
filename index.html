@@ -270,8 +270,15 @@ Research by Tzanetakis suggests that pitch is also a power classification tool f
 			<div class="row">
 				<div class="col-xs-12 col-sm-6 col-sm-offset-3 intro">
 					<h1>Results</h1>
-					<br/><h4>Lyrics</h4>			
-					<p>Blessed is he who, in the name of charity and good will, shepherds the weak through the valley of darkness, for he is truly his brother's keeper and the finder of lost children.</p>
+					<br/><h4>Lyrics</h4><br/>
+					<p>
+						Neither of the methods to use lyrics as the basis for a genre classifier worked well in practice.  In order to test the statistcal significance of our results, we did 10-fold cross-validation.  We used a single-sample <i>t</i>-test to compare the effectiveness of our method to prior probability.  We used this one because we were attempting to determine if the corrrect classification rates of our methods were statistically different the known correct classification rate of prior probability.
+					</p>
+
+					<br/><h5><i>Existence Method</i></h5>			
+					<p>
+						This method worked just about as well as prior probability.  The mean correct classification rate was <span class="number">0.1275</span> with a standard deviation of <span class="number">0.0249</span>.  When compared to a prior probability of <span class="number">0.125</span>, there was no statistical difference (p = <span class="number">0.7577</span>).  There was, however, an interesting trend in the data.  This can be seen in the plot of the correct classifiactions and the confusion matrix, both shown below.
+					</p>
 				</div>
 			</div>
 		</section>
