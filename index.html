@@ -234,15 +234,15 @@
 
 <h4>Audio Features</h4>
 
-<p>In order to extract low-level audio features for use in genre classification, we used <a href="http://marsyas.info/">MARSYAS</a>, an open-source audio processing framework developed by George Tzanetakis. We provided the following features to our classifier:</p>
+<p>In order to extract low-level audio features for use in genre classification, we used <a href="http://marsyas.info/">MARSYAS</a>, an open-source audio processing framework developed by George Tzanetakis. We provided the following features to our classifier:</p></br>
 <ol>
-  <li><p>Spectral Centroid: “center of gravity” of the frequency spectrum. Measure spectral shape, and higher values correspond to “brighter” texturs
+  <li><p><a href="http://en.wikipedia.org/wiki/Spectral_centroid">Spectral Centroid</a>. This provides a measure of the “center of gravity” of the frequency spectrum. Higher values correspond to a “brighter” sound.
 </p></li>
-  <li><p>Spectral Rolloff: frequency below which 85% of the magnitude distribution is concentrated. (Another measure of spectral shape)</p></li>
-  <li><p>Spectral flux: squared difference between normalized magnitudes of successive spectral distributions. Measure the amount of local spectral change</p></li>
-  <li><p>Time domain zero crossings: measure the noisiness of the signal</p></li>
-  <li><p>Mel-Frequency Cepstral Coefficients (MFCC’s): perceptually motivated, based on STFT. 13 coefficients used for speech representation, but the first five provide the best genre classification performance.</p><li>
-  <li><p>Spectral Flatness: a measure of the spectral variance for an audio file.</p><li>
+  <li><p>Spectral Rolloff. This measures the frequency below which 85% of the magnitude distribution is concentrated.</p></li>
+  <li><p><a href="http://en.wikipedia.org/wiki/Spectral_flux">Spectral Flux</a>. This measures the amount of spectral variation between adjacent short sections of the audio file.</p></li>
+  <li><p>Time domain zero crossings. This measures the noisiness of the signal.</p></li>
+  <li><p><a href="http://en.wikipedia.org/wiki/Mel-frequency_cepstrum">Mel-Frequency Cepstral Coefficients (MFCC’s)</a>. MFCC's describe the harmonic content of a song through an analysis of the prevailing frequences based on how far apart certain frequences "sound" to our ears in the context of music. in perceptual terms.  of  perceptually motivated, based on STFT.</p></li>
+  <li><p><a href="http://en.wikipedia.org/wiki/Spectral_flatness">Spectral Flatness.</a> This is a measure of the spectral variance throughout an audio file.</p></li>
 </ol>
 </br>
 <p>In our initial analysis of data, we have begun work with two main audio feature classifiers. We have a matlab script that compiles tempo information on all of our songs, for use classification in WEKA. Tempo is one of our initial features because of its dramatic variation between different styles of music, a distinction that may prove useful in distinguishing between faster (metal) and slower (reggae) genres. Our additional audio feature is Mel-Frequency Cepstral Coefficient (MFCC) analysis. MFCCs are designed to capture short-term spectral-based features and, though initially developed for vocal recognition, have proven highly effective in musical classification. 
