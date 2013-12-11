@@ -195,14 +195,12 @@
 			<div class="row">
 				<div class="col-xs-12 col-sm-6 col-sm-offset-3 intro">
 					<h1>Introduction</h1>
-                    <h4>Goals and Process</h4>
-					<p>Our goal for this project was to design a system that is able
-                    to determine a song’s genre based on low-level audio features.
-                    We conducted a comparative analysis between classification using audio features
-                    and classification using lyrics. If the accuracy of lyric-based classification
+          <h4>Our Goal</h4>
+					<p>Genre classification is a somewhat popular topic for research, particularly in the field of Music Information Retrieval. There have been many papers published on methods for classifying genres using audio features and other methods. Our goal for this project was to conduct a comparative anlaysis between genre classification using low-level audio features
+                    and genre classification using lyrics. If the accuracy of lyric-based classification
                     had proved to be significantly higher than using prior probability, we would have attempted to use boosting
-                    to combine lyric- and audio feature- based classification to create a more powerful classifier, but our tests showed
-                    that a naïve Bayesian classifier using lyrics fails to outperform prior probability by a statistically significant margin,
+                    to combine these two classification methods to create a more powerful classifier, but our tests showed
+                    that a Naïve Bayesian classifier using lyrics fails to outperform prior probability by a statistically significant margin,
                     so our genre classifier ultimately relied solely on analysis of low-level audio features.</p>
 
                     <h4>Motivation</h4>
@@ -214,7 +212,7 @@
                     to a library, or as a basis for a song recommendation application. In theory, a major extension of this learning
                     algorithm could even allow for computer construction of basic song forms for a particular genre.
                     
-                    On a more theoretical note, our feature extraction and classification process may also reveal some of the characteristics,
+                    On a more theoretical note, this feature extraction and classification process also has the potential to reveal some of the characteristics,
                     such as lyrical tendencies and audio features, that determine the way a song is perceived - in other words, the traits of
                     a song that cause it to be associated with specific genres such as "rock" or "country". This knowledge has applications far
                     beyond genre classification and could be used for many other applications, including song popularity predictors or
@@ -228,16 +226,23 @@
 		<!-- START APPROACH SECTION -->
 		<section id="approach">
 			<div class="row">
-				<div class="col-xs-12 col-sm-6 col-sm-offset-3 intro">
+				<div class="col-xs-12 col-sm-8 col-sm-offset-2 intro">
 					<h1>Our Approach</h1></br>
 
 
-<p>In order to conduct a comparitive analysis of different classification methods, we approached genre classification from two completely different angles. The first approach utilized Music Information Retrieval (MIR) methods to extract audio features and use these features to train a Bayes Net classifier. The second approach instead makes use of lyrical content, and constructs a Naïve Bayesian Classifier to determine a song's genre based on its lyrics.
-
+<p>In order to conduct a comparitive analysis of different classification methods, we approached genre classification from two completely different angles. The first approach utilized Music Information Retrieval (MIR) methods to extract audio features and use these features to train a Bayes Net classifier. The second approach instead makes use of lyrical content, and constructs a Naïve Bayesian Classifier to determine a song's genre based on its lyrics.</p>
 
 <h4>Audio Features</h4>
 
-<p>We are using Marsyas (Music Analysis, Retrieval and Synthesis for Audio Signals), an open-source audio processing framework written by George Tzanetakis. This framework provides a number of useful tools for Music Information Retrieval applications like ours, and we use this software to extract features from audio files in our dataset.</p>
+<p>In order to extract low-level audio features for use in genre classification, we used <a href="http://marsyas.info/">MARSYAS</a>, an open-source audio processing framework developed by George Tzanetakis. We provided the following features to our classifier:</p>
+<ol>
+  <li><p>Spectral Centroid: “center of gravity” of the frequency spectrum. Measure spectral shape, and higher values correspond to “brighter” texturs
+</p></li>
+  <li><p>Spectral Rolloff: frequency below which 85% of the magnitude distribution is concentrated. (Another measure of spectral shape)</p></li>
+  <li><p>Spectral flux: squared difference between normalized magnitudes of successive spectral distributions. Measure the amount of local spectral change</p></li>
+  <li><p>Time domain zero crossings: measure the noisiness of the signal</p></li>
+  <li><p>Mel-Frequency Cepstral Coefficients (MFCC’s): perceptually motivated, based on STFT. 13 coefficients used for speech representation, but the first five provide the best genre classification performance.</p><li>
+</ol>
 
 <p>In our initial analysis of data, we have begun work with two main audio feature classifiers. We have a matlab script that compiles tempo information on all of our songs, for use classification in WEKA. Tempo is one of our initial features because of its dramatic variation between different styles of music, a distinction that may prove useful in distinguishing between faster (metal) and slower (reggae) genres. Our additional audio feature is Mel-Frequency Cepstral Coefficient (MFCC) analysis. MFCCs are designed to capture short-term spectral-based features and, though initially developed for vocal recognition, have proven highly effective in musical classification. 
 Research by Tzanetakis suggests that pitch is also a power classification tool for genre classification. Unfortunately, we've had a number of issues attempting to extract pitch. Despite attempts with python binding enabled Marsyas, and older versions of Marsyas, we have yet to extract meaningful input. This is something we hope to achieve in the week. Alternatively, we will research other meaningful audio features and find another to extract.</p>
@@ -256,7 +261,7 @@ Research by Tzanetakis suggests that pitch is also a power classification tool f
     <!-- START DATASET SECTION -->
     <section id="dataset">
       <div class="row">
-        <div class="col-xs-12 col-sm-6 col-sm-offset-3 intro">
+        <div class="col-xs-12 col-sm-8 col-sm-offset-2 intro">
           <h1>Dataset:</h1>
           <p>Insert text here. </p>
 
@@ -268,7 +273,7 @@ Research by Tzanetakis suggests that pitch is also a power classification tool f
 		<!-- START RESULTS SECTION -->
 		<section id="results">
 			<div class="row">
-				<div class="col-xs-12 col-sm-6 col-sm-offset-3 intro">
+				<div class="col-xs-12 col-sm-8 col-sm-offset-2 intro">
 					<h1>Results</h1>
 					<p>Blessed is he who, in the name of charity and good will, shepherds the weak through the valley of darkness, for he is truly his brother's keeper and the finder of lost children.</p>
 				</div>
@@ -279,7 +284,7 @@ Research by Tzanetakis suggests that pitch is also a power classification tool f
 		<!-- START PAPER SECTION -->
 		<section id="paper">
 			<div class="row">
-				<div class="col-xs-12 col-sm-6 col-sm-offset-3 intro">
+				<div class="col-xs-12 col-sm-8 col-sm-offset-2 intro">
                     <h1>Paper</h1>
                     <p> Our extended abstract, available at the link below, provides further information on the project.</p>
                     <p><a href='#'>Extended Abstract</a></p>
