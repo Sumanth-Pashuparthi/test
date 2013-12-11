@@ -242,8 +242,9 @@
   <li><p>Spectral flux: squared difference between normalized magnitudes of successive spectral distributions. Measure the amount of local spectral change</p></li>
   <li><p>Time domain zero crossings: measure the noisiness of the signal</p></li>
   <li><p>Mel-Frequency Cepstral Coefficients (MFCC’s): perceptually motivated, based on STFT. 13 coefficients used for speech representation, but the first five provide the best genre classification performance.</p><li>
+  <li><p>Spectral Flatness: a measure of the spectral variance for an audio file.</p><li>
 </ol>
-
+</br>
 <p>In our initial analysis of data, we have begun work with two main audio feature classifiers. We have a matlab script that compiles tempo information on all of our songs, for use classification in WEKA. Tempo is one of our initial features because of its dramatic variation between different styles of music, a distinction that may prove useful in distinguishing between faster (metal) and slower (reggae) genres. Our additional audio feature is Mel-Frequency Cepstral Coefficient (MFCC) analysis. MFCCs are designed to capture short-term spectral-based features and, though initially developed for vocal recognition, have proven highly effective in musical classification. 
 Research by Tzanetakis suggests that pitch is also a power classification tool for genre classification. Unfortunately, we've had a number of issues attempting to extract pitch. Despite attempts with python binding enabled Marsyas, and older versions of Marsyas, we have yet to extract meaningful input. This is something we hope to achieve in the week. Alternatively, we will research other meaningful audio features and find another to extract.</p>
 
