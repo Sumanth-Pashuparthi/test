@@ -284,6 +284,18 @@ Research by Tzanetakis suggests that pitch is also a power classification tool f
 					<p>
 						This method worked just about as well as prior probability.  The mean correct classification rate was <span class="number">0.1275</span> with a standard deviation of <span class="number">0.0249</span>.  When compared to a prior probability of <span class="number">0.125</span>, there was no statistical difference (p = <span class="number">0.7577</span>).  There was, however, an interesting trend in the data.  This can be seen in the plot of the correct classifiactions and the confusion matrix, both shown below.
 					</p>
+					<img src="images/graphs/Lyrics_Method1.jpg"/>
+					<img src="images/tables/Lyrics_Method1_1.png"/>
+					<p>
+						As can be seen, almost all of the songs are classified as hip-hop.  This may be because of the sheer volume of words in many hip-hop songs.  Since there are so many words in hip-hop, the chance of a word existing in a hip-hop song is much greater than the chance of a word existing in any other genre.  
+					</p>
+					<p>
+						As an empirical example, in our dataset the average number of words in a hip-hop song is about <span class="number">415</span> and the average number of words in a blues song is about <span class="number">165</span>.  This means that for the word <i>car</i>, there is about a <span class="number">2.5%</span> higher chance it exists in a hip-hop song than in a blues song.  This difference makes it much more likely that our classifier will say a song is hip-hop than a different genre.  The full table of average word count per genre is shown below.
+					</p>
+					<img src="images/tables/Lyrics_Avg_Word_Count.png"/>
+					<p>
+						Since hip-hop seems like an outlier in our data set
+					</p>
 				</div>
 			</div>
 		</section>
