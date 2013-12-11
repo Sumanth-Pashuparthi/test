@@ -255,9 +255,9 @@
 <p>Even though we were unable to find the lyrics for some songs in the database, and some songs in the dataset turned out to be instrumentals, we were able to successfully scrape lyrics for <span class="number">68.375%</span> of the songs that we tried.  With a total of <span class="number">547</span> songs about evenly distributed among all <span class="number">8</span> genres, we had lyrics for about <span class="number">68</span> songs per genre.</p>
 
 <p>We used three different methods to attempt to classify lyrics, which we call the Existence Method, the Probability Method, and the Word Count Method.  The <span class="number">Existence Method</span> consisted of a Naive Bayes Classifier that used a dictionary made up of words from the songs.  In this method, we only added to a word's probability if it existed at all in a song and didn't increase its probability based on the number of times it was used in a song.  If our training set consisted of genre <i>G</i> with songs with the lyrics: </p>
-	<ul style="list-style-position:inside">
-		<li><b>Song 1</b>: <i>I love you, you love me</i></li>
-		<li><b>Song 2</b>: <i>Love is all you need</i></li>
+	<ul style="list-style-position:inside; list-style-type:none">
+		<li><p><b>Song 1</b>: <i>I love you, you love me</i></p></li>
+		<li><p><b>Song 2</b>: <i>Love is all you need</i></p></li>
 	</ul>
 <p>then the probability of <i>love</i> being in <i>G</i> is <span class="number">1</span>.  The <span class="number">Probability Method</span> was also a Naive Bayes classifier, but the dictionary was calculated differently.  For this method, the probability was number of times a word appeared in a genre over number of words in that genre.  For the above example, the probability of <i>love</i> being in <i>G</i> is <span class="number">3/11</span>, or <span class="number">0.272</span>.  The <span class="number">Word Count Method</span> simply found the average number of words in each genre and classified a song <i>S</i> based on the closest average to the number of words in <i>S</i>.
 
