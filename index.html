@@ -294,9 +294,33 @@ Research by Tzanetakis suggests that pitch is also a power classification tool f
 					</p>
 					<img src="images/tables/Lyrics_Avg_Word_Count.png"/>
 					<p>
-						Since hip-hop seems like an outlier in our data set
+						Since hip-hop seemed like an outlier in our dataset, we wanted to investigate what the results would look like if the genre wasn't included in the dataset at all.  We found a mean correct classification rate of <span class="number">0.2829</span> with a standard deviation of <span class="number">0.0579</span>.  This was statistically different from the prior probability of <span class="number">0.143</span> (p = <span class="number">3.1505e-5</span>).  Though these results are promising, we were simply following an intellectual curiosity.  Hip-hop is an important genre, and for our classifier to be unable to have it in the dataset is detrimental to its success.
 					</p>
-				</div>
+
+					<br/><h5><i>Probability Method</i></h5>
+					<p>
+						This method was nowhere near as successful as the previous method, which wasn't any good itself.  We found a mean correct classification rate of <span class="number">0.900</span> and a standard deviation of <span class="number">0.0316</span>.  This was significantly different from the prior probability of <span class="number">0.125</span>, with p = <span class="number">0.0067</span>.  However, this method was significantly <i>worse</i> than prior probability.  Below are a plot of the correct classifcation rates per genre and a confusion matrix.
+					</p>
+					<img src = "images/graphs/Lyrics_Method2.jpg"/>
+					<img src = "images/tables/Lyrics_Method2_1.png"/>
+					<p>
+						A different interesting trend shows up here.  Now, a lot of songs are being misclassified as blues.  This makes some sense; blues songs contain the least number of words, so when looking up probabilities for a word in a test song, the weight that blues gives is much more than the weight hip-hop gives.  Similar to the previous method, we attempted to remove the outlier genre from the dataset to see if we got better results.  Doing so actually worsened the quality of the classifier!  We found a mean correct classification rate of <span class="number">0.0714</span> with a standard deviation of <span class="number">0.0309</span>.  This method was also significantly worse than prior probability, with p = <span class="number">4.4716e-4</span>.
+					</p>
+
+					<br/><h5><i>Word Count Method</i></h5>
+					<p>
+						After both of these methods failed, we attempted a third method, namely using the total word count in a song to classify it to a genre.  This method is very naive and we didn't expect it to be very successful at all.  However, using we saw a mean correct classification rate of <span class="number">0.2325</span> with a standard deviation of <span class="number">0.0624</span>.  This proved statistically better than prior probability, with p = <span class="number">4.0758e-4</span>.  The plot of correct classification rate and the confusion matrix are shown below.
+					</p>
+					<img src = "images/graphs/Lyrics_Method3.jpg"/>
+					<img src = "images/tables/Lyrics_Method3_1.png"/>
+					<p>
+						We can see from the plot that the classifier always failed on Country, Disco, and Metal.  There's a very good reason for this.  If we look back to the average number of lyrics per genre, re-ordered from least to most:
+					</p>
+					<img src = "images/tables/Lyrics_Avg_Word_Count_Sorted.png"/>
+					<p>
+						it's easy to notice that all three of these genres are sandwiched pretty closely between other genres.  The most evident example of this is metal.  Using this classifier, for a song to be classified as metal it must have between <span class="number">211.72</span> and <span class="number">216.425</span> words.  There's not much room for variation here!  It's because of this strange binning that we don't believe this is a good way to classify songs into genres.  Perhaps if all of the genres had <i>very</i> different word counts this method would be successful, but we believe that this method's success on our dataset shows some consistency in the word count of our dataset, not in the quality of the classifier.  In other words, we believe that our results using only word count shows overfitting, not quality.
+					</p>
+				</div> 
 			</div>
 		</section>
 		<!-- END RESULTS SECTION -->
