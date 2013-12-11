@@ -250,9 +250,17 @@
 
 </br><h4>Lyrics</h4>
 
-<p>We collected lyrics data using a python script in conjunction with the ChartLyrics API. We created a list of song and artist names contained in the GTZAN dataset based on a list provided by George T., then pulled the lyrics for these tracks from ChartLyrics. We decided not to attempt lyrics-based classification for jazz and classical because songs from these two genres are mostly instrumentals.</p>
+<p>We collected lyrics data using a python script in conjunction with the <a href="http://www.chartlyrics.com/api.aspx">ChartLyrics API</a>. We created a list of song and artist names contained in the <a href="#dataset">GTZAN dataset</a> based on a list provided by George T., then pulled the lyrics for these tracks from ChartLyrics. We decided not to attempt lyrics-based classification for jazz and classical because songs from these two genres are mostly instrumentals.</p>
 
-<p>Even though we were unable to find the lyrics for some songs in the database, and some songs in the dataset turned out to be instrumentals, we were able to successfully scrape lyrics for &gt;90% of the songs that we tried. Using a two-dimensional classifier (specifically, training/classifying country vs. disco) yielded a prediction accuracy of ~75%. Even though we are yet to run formal statistical analyses, it seems evident that this is better than the "blind" prediction accuracy of 50%. </p>
+<p>Even though we were unable to find the lyrics for some songs in the database, and some songs in the dataset turned out to be instrumentals, we were able to successfully scrape lyrics for <span class="number">68.375%</span> of the songs that we tried.  With a total of <span class="number">547</span> songs about evenly distributed among all <span class="number">8</span> genres, we had lyrics for about <span class="number">68</span> songs per genre.</p>
+
+<p>We used three different methods to attempt to classify lyrics, which we call the Existence Method, the Probability Method, and the Word Count Method.  The <span class="number">Existence Method</span> consisted of a Naive Bayes Classifier that used a dictionary made up of words from the songs.  In this method, we only added to a word's probability if it existed at all in a song and didn't increase its probability based on the number of times it was used in a song.  If our training set consisted of genre <i>G</i> with songs with the lyrics: </p>
+	<ul style="list-style-position:inside; list-style-type:none">
+		<li><p><b>Song 1</b>: <i>I love you, you love me</i></p></li>
+		<li><p><b>Song 2</b>: <i>Love is all you need</i></p></li>
+	</ul>
+<p>then the probability of <i>love</i> being in <i>G</i> is <span class="number">1</span>.  The <span class="number">Probability Method</span> was also a Naive Bayes classifier, but the dictionary was calculated differently.  For this method, the probability was number of times a word appeared in a genre over number of words in that genre.  For the above example, the probability of <i>love</i> being in <i>G</i> is <span class="number">3/11</span>, or <span class="number">0.272</span>.  The <span class="number">Word Count Method</span> simply found the average number of words in each genre and classified a song <i>S</i> based on the closest average to the number of words in <i>S</i>.
+
 
 				</div>
 			</div>
@@ -286,12 +294,12 @@
 
 					<br/><h4>Classification With Lyrics</h4><br/>
 					<p>
-						Neither of the methods to use lyrics as the basis for a genre classifier worked well in practice.  In order to test the statistcal significance of our results, we did 10-fold cross-validation.  We used a single-sample <i>t</i>-test to compare the effectiveness of our method to prior probability.  We used this one because we were attempting to determine if the corrrect classification rates of our methods were statistically different the known correct classification rate of prior probability.
+						Neither of the Naive Bayes methods to use lyrics as the basis for a genre classifier worked well in practice.  In order to test the statistcal significance of our results, we did 10-fold cross-validation.  We used a single-sample <i>t</i>-test to compare the effectiveness of our method to prior probability.  We used this one because we were attempting to determine if the corrrect classification rates of our methods were statistically different the known correct classification rate of prior probability.
 					</p>
 
-					<br/><h5><i>Existence Method</i></h5>			
+					<br/><h5 id="existence-method"><i>Existence Method</i></h5>			
 					<p>
-						This method worked just about as well as prior probability.  The mean correct classification rate was <span class="number">0.1275</span> with a standard deviation of <span class="number">0.0249</span>.  When compared to a prior probability of <span class="number">0.125</span>, there was no statistical difference (p = <span class="number">0.7577</span>).  There was, however, an interesting trend in the data.  This can be seen in the plot of the correct classifiactions and the confusion matrix, both shown below.
+						This method worked just about as well as prior probability.  The mean correct classification rate was <span class="number">0.1275</span> with a standard deviation of <span class="number">0.0249</span>.  When compared to a prior probability of <span class="number">0.125</span>, there was no statistical difference (<i>p</i> = <span class="number">0.7577</span>).  There was, however, an interesting trend in the data.  This can be seen in the plot of the correct classifiactions and the confusion matrix, both shown below.
 					</p>
 					<img src="images/graphs/Lyrics_Method1.jpg"/>
 					<img src="images/tables/Lyrics_Method1_1.png"/>
@@ -299,26 +307,26 @@
 						As can be seen, almost all of the songs are classified as hip-hop.  This may be because of the sheer volume of words in many hip-hop songs.  Since there are so many words in hip-hop, the chance of a word existing in a hip-hop song is much greater than the chance of a word existing in any other genre.  
 					</p>
 					<p>
-						As an empirical example, in our dataset the average number of words in a hip-hop song is about <span class="number">415</span> and the average number of words in a blues song is about <span class="number">165</span>.  This means that for the word <i>car</i>, there is about a <span class="number">2.5%</span> higher chance it exists in a hip-hop song than in a blues song.  This difference makes it much more likely that our classifier will say a song is hip-hop than a different genre.  The full table of average word count per genre is shown below.
+						As an empirical example, in our dataset the average number of words in a hip-hop song is about <span class="number">415</span> and the average number of words in a blues song is about <span class="number">165</span>.  This means that for the word <i>car</i>, there is about a <span class="number">2.5</span> times higher chance it exists in a hip-hop song than in a blues song.  This difference makes it much more likely that our classifier will say a song is hip-hop than a different genre.  The full table of average word count per genre is shown below.
 					</p>
 					<img src="images/tables/Lyrics_Avg_Word_Count.png"/>
 					<p>
-						Since hip-hop seemed like an outlier in our dataset, we wanted to investigate what the results would look like if the genre wasn't included in the dataset at all.  We found a mean correct classification rate of <span class="number">0.2829</span> with a standard deviation of <span class="number">0.0579</span>.  This was statistically different from the prior probability of <span class="number">0.143</span> (p = <span class="number">3.1505e-5</span>).  Though these results are promising, we were simply following an intellectual curiosity.  Hip-hop is an important genre, and for our classifier to be unable to have it in the dataset is detrimental to its success.
+						Since hip-hop seemed like an outlier in our dataset, we wanted to investigate what the results would look like if the genre wasn't included in the dataset at all.  We found a mean correct classification rate of <span class="number">0.2829</span> with a standard deviation of <span class="number">0.0579</span>.  This was statistically different from the prior probability of <span class="number">0.143</span> (<i>p</i> = <span class="number">3.1505e-5</span>).  Though these results are promising, we were simply following an intellectual curiosity.  Hip-hop is an important genre, and for our classifier to be unable to have it in the dataset is detrimental to its success.
 					</p>
 
 					<br/><h5><i>Probability Method</i></h5>
 					<p>
-						This method was nowhere near as successful as the previous method, which wasn't any good itself.  We found a mean correct classification rate of <span class="number">0.900</span> and a standard deviation of <span class="number">0.0316</span>.  This was significantly different from the prior probability of <span class="number">0.125</span>, with p = <span class="number">0.0067</span>.  However, this method was significantly <i>worse</i> than prior probability.  Below are a plot of the correct classifcation rates per genre and a confusion matrix.
+						This method was nowhere near as successful as the previous method, which wasn't any good itself.  We found a mean correct classification rate of <span class="number">0.900</span> and a standard deviation of <span class="number">0.0316</span>.  This was significantly different from the prior probability of <span class="number">0.125</span>, with <i>p</i> = <span class="number">0.0067</span>.  However, this method was significantly <i>worse</i> than prior probability.  Below are a plot of the correct classifcation rates per genre and a confusion matrix.
 					</p>
 					<img src = "images/graphs/Lyrics_Method2.jpg"/>
 					<img src = "images/tables/Lyrics_Method2_1.png"/>
 					<p>
-						A different interesting trend shows up here.  Now, a lot of songs are being misclassified as blues.  This makes some sense; blues songs contain the least number of words, so when looking up probabilities for a word in a test song, the weight that blues gives is much more than the weight hip-hop gives.  Similar to the previous method, we attempted to remove the outlier genre from the dataset to see if we got better results.  Doing so actually worsened the quality of the classifier!  We found a mean correct classification rate of <span class="number">0.0714</span> with a standard deviation of <span class="number">0.0309</span>.  This method was also significantly worse than prior probability, with p = <span class="number">4.4716e-4</span>.
+						A different interesting trend shows up here.  Now, a lot of songs are being misclassified as blues.  This makes some sense; blues songs contain the least number of words, so when looking up probabilities for a word in a test song, the weight that blues gives is much more than the weight hip-hop gives.  Similar to the previous method, we attempted to remove the outlier genre from the dataset to see if we got better results.  Doing so actually worsened the quality of the classifier!  We found a mean correct classification rate of <span class="number">0.0714</span> with a standard deviation of <span class="number">0.0309</span>.  This method was also significantly worse than prior probability, with <i>p</i> = <span class="number">4.4716e-4</span>.
 					</p>
 
 					<br/><h5><i>Word Count Method</i></h5>
 					<p>
-						After both of these methods failed, we attempted a third method, namely using the total word count in a song to classify it to a genre.  This method is very naive and we didn't expect it to be very successful at all.  However, using we saw a mean correct classification rate of <span class="number">0.2325</span> with a standard deviation of <span class="number">0.0624</span>.  This proved statistically better than prior probability, with p = <span class="number">4.0758e-4</span>.  The plot of correct classification rate and the confusion matrix are shown below.
+						After both of these methods failed, we attempted a third method, namely using the total word count in a song to classify it to a genre.  This method is very naive and we didn't expect it to be very successful at all.  However, using we saw a mean correct classification rate of <span class="number">0.2325</span> with a standard deviation of <span class="number">0.0624</span>.  This proved statistically better than prior probability, with <i>p</i> = <span class="number">4.0758e-4</span>.  The plot of correct classification rate and the confusion matrix are shown below.
 					</p>
 					<img src = "images/graphs/Lyrics_Method3.jpg"/>
 					<img src = "images/tables/Lyrics_Method3_1.png"/>
