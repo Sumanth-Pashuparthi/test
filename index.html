@@ -271,7 +271,7 @@
     <section id="dataset">
       <div class="row">
         <div class="col-xs-12 col-sm-8 col-sm-offset-2 intro">
-          <h1>Dataset:</h1>
+          <h1>Dataset</h1>
           <p>In order to conduct our comparative analysis of these two approaches to the genre classification problem, we used the <a href="http://marsyas.info/download/data_sets/">GTZAN Dataset</a>, which was also developed by George Tzanetakis. This dataset consists of 100 short song clips in each of 10 genres. The clips are each about 30 seconds long, and are drawn from a variety of sources, including live performances and radio broadcasts in addition to typical studio recordings.</p>
 
           <p>The dataset doesn't come with song title and artist information, but we were able to obtain this information for most songs thanks to the research of Bob Sturm. Since the jazz and classical songs included in the dataset are all completely instrumental and therefore don't have lyrics for us to analyze, we decided to work with the other 8 genres only. These genres are blues, country, disco, hip hop, metal, pop, reggae, and rock.</p>
@@ -290,7 +290,18 @@
           <br/><h4>Classification With Audio Features</h4><br/>
           <p>After experimenting with a variety of different learning methods in Weka, we decided to use a Bayes Net classifier. We performed 10-fold cross validation on our dataset, which has a total of 800 examples evenly divided into 8 genres (blues, country, disco, hip hop, metal, pop, reggae, and rock). So in each fold, Weka trains on 90 examples from each class (720 total) and tests on 10 from each class (80 total). We will discuss the overall results for a few different approaches.</p></br>
 
-          <p>First of all, in using all of the audio features presented above, we were able to replicate the classification accuracy achieved by George Tzanetakis in his <a href="http://dspace.library.uvic.ca:8080/bitstream/handle/1828/1344/tsap02gtzan.pdf?sequence=1">paper</a> on genre classification
+          <p>First of all, in using all of the audio features presented above with a Bayes Net learner, we were able to achieve <span class="number">61.125%</span> accuracy in overall classification, which is similar to the <span class="number">61%</span> accuracy reported by George Tzanetakis in his <a href="http://dspace.library.uvic.ca:8080/bitstream/handle/1828/1344/tsap02gtzan.pdf?sequence=1">paper</a> on genre classification. The confusion matrix for this classifier is shown below:</p></br>
+
+          <img src="images/graphs/all_features_no_boosting.png"/></br>
+          <p>The number of correctly classified audio files (out of 100) for each genre is along the diagonal. The results are fairly close to what we would expect based on an intuitive understanding of genres. Metal was the most successfully classified genre, and almost of the misclassified metal songs are interpreted as rock, which is the most similar genre. There are many similar trends to the misclassifications, such as the trend of many pop songs being misclassified as hip hop or rock. Overall, the accuracy is quite good and the results seem to make sense from a human listener's perspective.</p>
+
+          <p>Using the AdaBoost algorithm on top of our Bayes Net classifier, we were able to improve the accuracy to <span class="number">64.75%</span>. The confusion matrix for this method is shown below:</p>
+
+          <img src="images/graphs/all_features_with_boosting.png"/></br>
+
+          <p>In this confusion matrix, we see improvement in classification accuracy across the board, with the most notable improvement in the classification of hip hop songs: <span class="number">67/100</span> correctly classified with boosting, vs. <span class="number">54/100</span> without. However, this boosting carries with it a high risk of overfitting to the dataset, so the utility of this approach very much depends on the applciation.</p>
+
+          <p>We also tested the same Bayes Net learning approach using more limited subsets of the features. When excluding the spectral flatness feature from the analysis, the learner achieves only <span class="number">54.125%</span> accuracy (or <span class="number">54.625%</span> with boosting). Full confusion matrices for these cases are not included here, but our results through experimentation with limited feature sets confirmed the utility of the features under consideration in our full set.</p></br>
 
 					<br/><h4>Classification With Lyrics</h4><br/>
 					<p>
